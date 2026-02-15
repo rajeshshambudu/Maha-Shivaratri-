@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maha Shivaratri - Divine Blessings</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .shiva-symbol {
+            font-size: 120px;
+            color: #ffcc33;
+            text-shadow: 0 0 30px #ffaa00;
+            animation: breathe 4s infinite ease-in-out;
+            cursor: pointer;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin: 20px 0;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ffd700, #fff, #ffae00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
+        }
+
+        .quote-box {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            border-left: 3px solid #ffcc33;
+            background: rgba(255, 255, 255, 0.05);
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            animation: fadeIn 3s ease;
+        }
+
+        .audio-control {
+            margin-top: 30px;
+            padding: 10px 25px;
+            background: transparent;
+            border: 2px solid #ffcc33;
+            color: #ffcc33;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .audio-control:hover {
+            background: #ffcc33;
+            color: #000;
+        }
+
+        /* Animations */
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; filter: brightness(1.2); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="shivaAudio" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <div class="shiva-symbol">ॐ</div>
+        <h1>Maha Shivaratri</h1>
+        
+        <div class="quote-box">
+            "Shiva is the soul of everything. He is the beginning, the middle, and the end of all creation." 
+            <br><small>— The Shiva Purana</small>
+        </div>
+
+        <p style="letter-spacing: 3px; color: #ffd700;">OM NAMAH SHIVAYA</p>
+
+        <button class="audio-control" onclick="toggleAudio()" id="btnText">Play Divine Sound</button>
+    </div>
+
+    <script>
+        // Background Particle Effect
+        function createParticles() {
+            for (let i = 0; i < 50; i++) {
+                let p = document.createElement('div');
+                p.className = 'particle';
+                let size = Math.random() * 5 + 'px';
+                p.style.width = size;
+                p.style.height = size;
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.top = Math.random() * 100 + 'vh';
+                
+                document.body.appendChild(p);
+
+                let duration = Math.random() * 10 + 5;
+                p.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 0.2 },
+                    { transform: `translateY(-100vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    iterations: Infinity
+                });
+            }
+        }
+
+        function toggleAudio() {
+            const audio = document.getElementById('shivaAudio');
+            const btn = document.getElementById('btnText');
+            if (audio.paused) {
+                audio.play();
+                btn.innerText = "Pause Sound";
+            } else {
+                audio.pause();
+                btn.innerText = "Play Divine Sound";
+            }
+        }
+
+        createParticles();
+    </script>
+</body>
+</html>
